@@ -2,8 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import Title from "../../Components/Title";
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { LogBox } from "react-native";
 
-import { database } from "../../Config";
+LogBox.ignoreLogs(["Setting a timer"]);
+
+import Firebase from "../../Config";
 import {
   Container,
   TopContainer,
@@ -22,15 +25,42 @@ import {
   TimeStudy,
   Scroll
 } from "./styles";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import BookContext from "../../Provider";
 import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
   const { book, setBook } = useContext(BookContext);
-
   const navigation = useNavigation();
+
+  useEffect(() => {
+    let unmounted = false;
+
+    Firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        if (!unmounted) {
+          var uid = user.uid;
+          console.log(uid);
+        }
+      } else {
+        navigation.navigate("Login");
+      }
+    });
+
+    Firebase.firestore()
+      .collection("Books")
+      .onSnapshot((query) => {
+        const list = [];
+        query.forEach((element) => {
+          list.push({ ...element.data(), id: element.id });
+        });
+        setBooks(list);
+      });
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
   const seeBook = (title, text, author, stars) => {
     setBook({
@@ -43,21 +73,25 @@ const Home = () => {
     navigation.navigate("Book");
   };
 
-  useEffect(() => {
-    database.collection("Books").onSnapshot((query) => {
-      const list = [];
-      query.forEach((element) => {
-        list.push({ ...element.data(), id: element.id });
+  const exit = () => {
+    Firebase.auth()
+      .signOut()
+      .then(() => {
+        navigation.navigate("Login");
+      })
+      .catch((error) => {
+        // An error happened.
       });
+  };
 
-      setBooks(list);
-    });
-  }, []);
   return (
     <Container>
       <Scroll showsVerticalScrollIndicator={false}>
         <TopContainer>
           <Title text="Hello" />
+          <TouchableOpacity on onPress={() => exit()}>
+            <Ionicons name="exit-outline" size={24} color="black" />
+          </TouchableOpacity>
         </TopContainer>
 
         <InfoContainer>

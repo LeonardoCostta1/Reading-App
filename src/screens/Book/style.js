@@ -18,7 +18,8 @@ export const Header = styled.View`
 `;
 export const Scroll = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
-    alignItems: "center"
+    alignItems: "center",
+    paddingBottom:50,
   }
 }))``;
 
@@ -26,7 +27,6 @@ export const Title = styled.Text`
   font-size: 25px;
   font-weight: bold;
 `;
-
 export const Author = styled.Text`
   font-size: 18px;
   font-weight: bold;
@@ -42,4 +42,18 @@ export const BookCover = styled.View`
   width: 120px;
   background-color: #ffdf10;
   margin-bottom: 20px;
+`;
+export const PlayerContainer = styled.View`
+  height: 50px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  align-self: center;
+  border-top-width: 1px;
+  border-top-color: #ddd;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 20px;
 `;
