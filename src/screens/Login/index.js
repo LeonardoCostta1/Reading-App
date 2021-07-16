@@ -29,7 +29,7 @@ const Login = () => {
         // ...
       }
     });
-  }, []);
+  },[]);
 
   async function entrar() {
     if (email && password) {
