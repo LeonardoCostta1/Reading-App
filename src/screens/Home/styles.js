@@ -5,6 +5,11 @@ export const Container = styled.View`
   background-color: #fff;
   padding: 30px;
 `;
+export const Scroll = styled.ScrollView.attrs(() => ({
+  contentContainerStyle: {
+    width: "100%"
+  }
+}))``;
 
 export const TopContainer = styled.View`
   height: 100px;
@@ -49,6 +54,9 @@ export const BoxBooks = styled.TouchableOpacity`
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 10px;
+  border-bottom-width: 1px;
+  border-bottom-color: #eee;
+  padding-bottom: 10px;
 `;
 
 export const Book = styled.View`
