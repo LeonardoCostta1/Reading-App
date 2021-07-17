@@ -5,7 +5,7 @@ export const Container = styled.View`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  padding: 30px;
+  paddingHorizontal: 30px;
 `;
 
 export const Header = styled.View`
@@ -14,7 +14,7 @@ export const Header = styled.View`
   height: 50px;
   width: 100%;
   flex-direction: row;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 `;
 export const Scroll = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {

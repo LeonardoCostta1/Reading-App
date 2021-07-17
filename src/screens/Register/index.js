@@ -24,7 +24,7 @@ const Register = () => {
     // [START auth_signup_password]
     await Firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email.trim(), password.trim())
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user;

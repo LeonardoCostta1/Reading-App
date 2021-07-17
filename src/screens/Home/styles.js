@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.View`
   flex: 1;
   background-color: #fff;
-  padding: 30px;
+  paddingHorizontal: 30px;
 `;
 export const Scroll = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
@@ -12,10 +12,11 @@ export const Scroll = styled.ScrollView.attrs(() => ({
 }))``;
 
 export const TopContainer = styled.View`
-  height: 100px;
+  height: 50px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  marginVertical: 20px;
 `;
 
 export const InfoContainer = styled.View`

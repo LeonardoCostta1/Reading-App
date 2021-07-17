@@ -11,17 +11,18 @@ import {
 } from "./style";
 import { useNavigation } from "@react-navigation/native";
 import Firebase from "../../Config";
-import { View } from "react-native";
+import { View,Text } from "react-native";
 const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  const [uid, setUid] = React.useState("");
+
   useEffect(() => {
     Firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         var uid = user.uid;
-        console.log(uid);
         navigation.replace("Home");
         // ...
       } else {
@@ -34,9 +35,9 @@ const Login = () => {
   async function entrar() {
     if (email && password) {
       await Firebase.auth()
-        .signInWithEmailAndPassword(email, password)
+        .signInWithEmailAndPassword(email.trim(), password.trim())
         .then((userCredential) => {
-          // Signed in
+          // Signed i
           var user = userCredential.user;
           navigation.replace("Home");
           // ...
@@ -61,10 +62,11 @@ const Login = () => {
           onChangeText={setPassword}
           value={password}
         />
-        <Signup onPress={() => entrar()}>
+        <Signup onPress={()=>entrar()}>
           <SignupText>Entar agora</SignupText>
         </Signup>
       </View>
+      
 
       <RegisterButton onPress={() => navigation.navigate("Register")}>
         <RegisterText>dont have an account? </RegisterText>

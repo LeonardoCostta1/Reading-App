@@ -1,8 +1,8 @@
-import { StatusBar } from "expo-status-bar";
+
 import React from "react";
 import { BookProvider } from "./src/Provider";
 import Routes from "./src/Routes";
-
+import { StatusBar } from "react-native";
 
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
     <>
       <BookProvider>
         <Routes />
-        <StatusBar style="auto" />
+        <StatusBar/>
       </BookProvider>
     </>
   );

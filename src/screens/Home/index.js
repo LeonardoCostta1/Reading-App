@@ -41,7 +41,6 @@ const Home = () => {
       if (user) {
         if (!unmounted) {
           var uid = user.uid;
-          console.log(uid);
         }
       } else {
         navigation.navigate("Login");
