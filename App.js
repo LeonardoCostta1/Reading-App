@@ -10,7 +10,7 @@ export default function App() {
     <>
       <BookProvider>
         <Routes />
-        <StatusBar/>
+        <StatusBar barStyle="dark-content" backgroundColor="#fff"/>
       </BookProvider>
     </>
   );

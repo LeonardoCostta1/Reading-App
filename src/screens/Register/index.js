@@ -1,7 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import Firebase from "../../Config";
+import Headers from "../../Components/Headers";
 import {
   Container,
   Logo,
@@ -18,37 +19,48 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
 
-
   async function asyncsignUpWithEmailPassword() {
-    if(email&&password){
-    // [START auth_signup_password]
-    await Firebase
-      .auth()
-      .createUserWithEmailAndPassword(email.trim(), password.trim())
-      .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
+    if (email && password) {
+      // [START auth_signup_password]
+      await Firebase.auth()
+        .createUserWithEmailAndPassword(email.trim(), password.trim())
+        .then((userCredential) => {
+          // Signed in
+          var user = userCredential.user;
 
-        navigation.navigate('Home')
+          navigation.navigate("Home");
 
-        // ...
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+          // ...
+        })
+        .catch((error) => {
+          var mensagemErro = "";
+          var errorCode = error.code;
+          var errorMessage = error.message;
 
-        console.log(error.code);
-        // ..
-      });
-    // [END auth_signup_password]
-    }else{
-      alert('Favor preencher todos os campos!')
+          if (errorCode == "auth/weak-password") {
+            mensagemErro = "A senha precisa ter no minimo 6 caracteres";
+          } else if (errorCode == "auth/expired-action-code") {
+            mensagemErro = "Cogido de ação expirou";
+          } else if (errorCode == "auth/invalid-action-code") {
+            mensagemErro = "código de ação for inválido";
+          } else if (errorCode == "auth/user-disabled") {
+            mensagemErro = "usuario desabilitado";
+          } else if (errorCode == "auth/user-not-found") {
+            mensagemErro = "Usuario não cadastrado";
+          }
+
+          alert(mensagemErro);
+          // ..
+        });
+      // [END auth_signup_password]
+    } else {
+      alert("Favor preencher todos os campos!");
     }
-
   }
 
   return (
     <Container>
+      <Headers/>
       <Logo>Cadastre-se</Logo>
 
       <View style={{ width: "100%" }}>

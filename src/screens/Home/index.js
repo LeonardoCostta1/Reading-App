@@ -37,7 +37,7 @@ const Home = () => {
   useEffect(() => {
     let unmounted = false;
 
-    Firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = Firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         if (!unmounted) {
           var uid = user.uid;
@@ -57,17 +57,12 @@ const Home = () => {
         setBooks(list);
       });
     return () => {
-      unmounted = true;
+      unsubscribe()
     };
   }, []);
 
-  const seeBook = (title, text, author, stars) => {
-    setBook({
-      title,
-      text,
-      author,
-      stars
-    });
+  const seeBook = (book) => {
+    setBook(book);
 
     navigation.navigate("Book");
   };
@@ -112,7 +107,7 @@ const Home = () => {
               <BoxBooks
                 key={item.id}
                 onPress={() =>
-                  seeBook(item.title, item.text, item.author, item.stars)
+                  seeBook(item)
                 }
               >
                 <Book></Book>
@@ -120,7 +115,7 @@ const Home = () => {
                   <TitleBook>{item.title}</TitleBook>
                   <Author>{item.author}</Author>
                   <StarContainer>
-                    <Entypo name="star" size={20} color="#FFDF10" />
+                    <Entypo name="star" size={20} color="#FA6400" />
                     <StarRate>{item.stars}</StarRate>
                   </StarContainer>
                 </BookDescriptionContainer>

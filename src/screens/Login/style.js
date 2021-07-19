@@ -6,6 +6,7 @@ export const Container = styled.View`
   padding-top: 100px;
   align-items: center;
   justify-content: space-between;
+  background-color: #fff;
 `;
 export const Logo = styled.Text`
   font-size: 40px;
@@ -13,7 +14,7 @@ export const Logo = styled.Text`
 export const Signup = styled.TouchableOpacity`
   flex-direction: row;
   height: 50px;
-  background: #000;
+  background: #FA6400;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
@@ -36,7 +37,7 @@ export const RegisterTextBold = styled.Text`
 
 export const Input = styled.TextInput`
   font-size: 12px;
-  border: 1px solid #bbb;
+  border: 1px solid #ccc;
   width: 100%;
   height: 50px;
   margin-bottom: 10px;

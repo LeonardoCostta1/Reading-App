@@ -20,14 +20,18 @@ export const TopContainer = styled.View`
 `;
 
 export const InfoContainer = styled.View`
-  background-color: #ffdf10;
+  background-color: #fff;
   height: 80px;
+  width: 100%;
+  align-self: center;
   border-radius: 5px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 30px;
   margin-bottom: 10px;
+  border: 1px solid #ddd;
+  /* elevation:10px */
 `;
 
 export const TimeStudy = styled.Text`
@@ -46,7 +50,7 @@ export const Category = styled.Text`
   font-weight: bold;
 `;
 export const SeeAll = styled.Text`
-  color: #ffdf10;
+  color: #FA6400;
 `;
 export const ContainerBooks = styled.View``;
 
@@ -63,7 +67,7 @@ export const BoxBooks = styled.TouchableOpacity`
 export const Book = styled.View`
   height: 90px;
   width: 70px;
-  background-color: #ffdf10;
+  background-color: #FA6400;
   margin-right: 20px;
 `;
 

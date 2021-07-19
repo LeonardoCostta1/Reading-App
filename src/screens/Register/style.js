@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.View`
 flex: 1;
-padding: 30px;
+padding-left: 30px;
+padding-right: 30px;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+background-color: #fff;
 `
 export const Logo = styled.Text`
   font-size: 40px;
@@ -12,7 +14,7 @@ export const Logo = styled.Text`
 export const Signup = styled.TouchableOpacity`
   flex-direction: row;
   height: 50px;
-  background: #000;
+  background: #FA6400;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
